@@ -90,3 +90,55 @@ export default function Navigation() {
       </nav>
   )
 }
+
+// nav my setup
+const nav = [
+    {
+        title: 'ome',
+        ed: 'H',
+        link: '/'
+    },
+    {
+        title: 'bout',
+        ed: 'A',
+        link: '/about'
+    }
+]
+
+import Link from "next/link"
+import react, { useState} from "react"
+
+export default function Nav() {
+
+    const [open, setOpen] = useState(false);
+
+    return (
+        <nav className={`border-b sticky bg-white top-0 ${open ? '' : '' } z-40 transition-all duration-500 h-fit`}>
+            <div className="p-4 lg:p-6 lg:px-12 flex justify-between">
+                <img src="/IMG_6642.jpg" alt="img logo" className="w-fit h-12 object-cover" />
+                <button id="demo"  >
+                    <p onClick={() => setOpen(!open)}>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 lg:h-12 lg:w-12 stroke-1 hover:stroke-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </p>
+                </button>
+            </div>
+            
+
+            <ul className={` p-6 lg:p-12 ${open ? 'block' : 'hidden'} flex flex-col justify-start gap-8 transition-all duration-500 ease-linear`}>
+
+                {nav.map((item) => 
+                    <li className="text-3xl hover:text-yellow-800 sm:text-4xl text-center lg:text-5xl transition-all duration-500 ease-linear uppercase">
+                        <span className="text-yellow-800">{item.ed}</span><Link href={item.link}>{item.title}</Link>
+                    </li>
+                )}
+                
+                
+            </ul>
+            
+        </nav>
+        // --> nav
+    )
+}
+
